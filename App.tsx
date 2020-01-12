@@ -3,9 +3,10 @@ import { Provider } from 'react-redux';
 import store from './redux/configureStore';
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
-import StartScreen from './views/StartScreen'
-import Login from './views/Login'
-import Registration from './views/Registration'
+import StartScreen from './views/StartScreen';
+import Login from './views/Login';
+import Notification from './components/Notification';
+import Registration from './views/Registration';
 
 
 let RootStack = createStackNavigator({
@@ -30,6 +31,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <Navigation />
+      <Notification />
     </Provider>
   );
 };

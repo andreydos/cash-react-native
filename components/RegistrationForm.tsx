@@ -26,7 +26,6 @@ export default function RegistrationForm() {
   }
 
   function sendRegisterRequest(): void {
-    console.log('sddf');
     if (!/^.+@.+\..+$/.test(email)) {
       alert('Invalid email')
     } else if (password.length < 6) {

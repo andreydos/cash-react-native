@@ -42,14 +42,19 @@ const initialState: StateType = {
 export default function reducer(state: StateType = initialState, action: any) {
   switch (action.type) {
     case POST_LOGIN:
+      debugger
+
       return {...state, login_pending: true, error: ''};
     case POST_LOGIN_SUCCESS:
+      debugger
       return {...state, login_pending: false, user: action.payload};
     case POST_LOGIN_FAIL:
+      debugger
+
       return {
         ...state,
         login_pending: false,
-        error: 'Error while login.' + action.error.response.data.message  || ''
+        error: 'Error while login. ' + action.error.response.data.message  || ''
       };
     case POST_REGISTER:
       return {...state, register_pending: true, error: ''};
@@ -59,7 +64,7 @@ export default function reducer(state: StateType = initialState, action: any) {
       return {
         ...state,
         register_pending: false,
-        error: 'Error while registration.' + action.error.response.data.message || ''
+        error: 'Error while registration. ' + action.error.response.data.message || ''
       };
     case GET_PROFILE:
       return {...state, profile_loading: true, error: ''};
@@ -69,7 +74,7 @@ export default function reducer(state: StateType = initialState, action: any) {
       return {
         ...state,
         profile_loading: false,
-        error: 'Error while fetching profile.' + action.error.response.data.message || ''
+        error: 'Error while fetching profile. ' + action.error.response.data.message || ''
       };
     case SAVE_TOKEN:
       return {...state, userToken: action.payload};
@@ -161,7 +166,7 @@ export const setError = (error: string) => ({
   }
 });
 
-export const getUserToken = () => dispatch =>
+export const getUserToken = () => (dispatch) => {
   AsyncStorage.getItem('cashAppUserToken')
     .then((data) => {
       dispatch(saveTokenToStore(data));
@@ -169,6 +174,8 @@ export const getUserToken = () => dispatch =>
     .catch((err) => {
       dispatch(setError(err.message || 'Error white getting user token'));
     });
+}
+
 
 export const saveUserToken = (data: string) => dispatch =>
   AsyncStorage.setItem('cashAppUserToken', data)
