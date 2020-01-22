@@ -8,6 +8,10 @@ import {
 import styled from "styled-components/native";
 import ResponsiveImageView from 'react-native-responsive-image-view';
 import Colors from '../variables/Colors'
+import {useEffect} from "react";
+import {getUserToken, saveTokenToStore, setError} from '../redux/modules/auth';
+import {useDispatch} from 'react-redux';
+
 
 const ViewSectionContainer = styled.View`
   
@@ -27,7 +31,25 @@ const TextSectionTitle = styled.Text`
   text-align: center;
 `;
 
-export default function StartScreen() {
+export default function StartScreen({navigation}) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getUserToken()
+      .then((data) => {
+        console.log('token')
+        console.log(data)
+        if (data !== null) {
+          dispatch(saveTokenToStore(data));
+          // todo: redirect to main screen
+        } else {
+          navigation.navigate('Login')
+        }
+      })
+      .catch((err) => {
+        dispatch(setError(err.message || 'Error white getting user token'));
+      });
+  }, []);
+
   return (
     <React.Fragment>
       <StatusBar barStyle="dark-content"/>

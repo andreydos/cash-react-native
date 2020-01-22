@@ -1,6 +1,8 @@
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import {createLogger} from 'redux-logger';
+import common from './modules/common';
 import auth from './modules/auth';
+import wallets from './modules/wallets';
 import axios from 'axios';
 import thunk from 'redux-thunk';
 
@@ -12,7 +14,9 @@ axios.defaults.headers['Accept'] = 'application/json';
 const loggerMiddleware = createLogger();
 
 const reducers = combineReducers({
-  auth
+  common,
+  auth,
+  wallets
 });
 
 let store = createStore(

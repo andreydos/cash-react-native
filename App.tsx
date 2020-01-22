@@ -5,6 +5,7 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from 'react-navigation-stack';
 import StartScreen from './views/StartScreen';
 import Login from './views/Login';
+import Main from './views/Main';
 import Notification from './components/Notification';
 import Registration from './views/Registration';
 
@@ -18,10 +19,13 @@ let RootStack = createStackNavigator({
     },
     Registration: {
       screen: Registration
+    },
+    Main: {
+      screen: Main
     }
   },
   {
-    initialRouteName: "Registration",
+    initialRouteName: "Main",
     headerMode: 'none'
   });
 

@@ -166,14 +166,8 @@ export const setError = (error: string) => ({
   }
 });
 
-export const getUserToken = () => (dispatch) => {
-  AsyncStorage.getItem('cashAppUserToken')
-    .then((data) => {
-      dispatch(saveTokenToStore(data));
-    })
-    .catch((err) => {
-      dispatch(setError(err.message || 'Error white getting user token'));
-    });
+export const getUserToken = () => {
+  return AsyncStorage.getItem('cashAppUserToken')
 }
 
 
