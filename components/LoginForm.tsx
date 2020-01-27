@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {Platform} from "react-native";
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import Icon from "react-native-vector-icons/Ionicons";
 import {Button, Input} from 'react-native-elements';
-import {useDispatch} from 'react-redux';
+import {useDispatch, connect} from 'react-redux';
 import {login} from '../redux/modules/auth';
 
 
-export default function LoginForm() {
+function LoginForm({user, loginPending, navigation}) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,6 +31,12 @@ export default function LoginForm() {
       }));
     }
   }
+
+  useEffect(() => {
+    if (user !== null) {
+      navigation.navigate('Main')
+    }
+  }, [user]);
 
   return (
     <React.Fragment>
@@ -85,7 +91,17 @@ export default function LoginForm() {
         iconRight
         titleStyle={{marginRight: 10, marginBottom: 3}}
         title="Login"
+        loading={loginPending}
       />
     </React.Fragment>
   )
 }
+
+const mapStateToProps = function(state) {
+  return {
+    loginPending: state.auth.login_pending,
+    user: state.auth.user
+  }
+};
+
+export default connect(mapStateToProps)(LoginForm);

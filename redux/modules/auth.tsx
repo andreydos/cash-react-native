@@ -42,15 +42,10 @@ const initialState: StateType = {
 export default function reducer(state: StateType = initialState, action: any) {
   switch (action.type) {
     case POST_LOGIN:
-      debugger
-
       return {...state, login_pending: true, error: ''};
     case POST_LOGIN_SUCCESS:
-      debugger
       return {...state, login_pending: false, user: action.payload};
     case POST_LOGIN_FAIL:
-      debugger
-
       return {
         ...state,
         login_pending: false,

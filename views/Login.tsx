@@ -62,7 +62,7 @@ const Login = ({navigation}) => {
 
             <ViewSectionContainer>
               <TextSectionTitle>Keep your budget under control</TextSectionTitle>
-              <LoginForm/>
+              <LoginForm navigation={navigation}/>
               <TouchableOpacity
                 onPress={()=>{navigation.navigate('Registration')}}
               >

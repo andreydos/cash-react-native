@@ -25,7 +25,7 @@ let RootStack = createStackNavigator({
     }
   },
   {
-    initialRouteName: "Main",
+    initialRouteName: "Start",
     headerMode: 'none'
   });
 

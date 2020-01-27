@@ -36,9 +36,9 @@ export const getUserWallets = () => {
     dispatch(walletsPending());
 
     axios
-      .get('/wallets')
+      .get('/wallets/all')
       .then(res => {
-        dispatch(walletsSuccess(res));
+        dispatch(walletsSuccess(res.data));
       })
       .catch(error => {
         const response = error.response && error.response.data.message;

@@ -1,7 +1,8 @@
 import * as React from 'react'
 import {
   SafeAreaView,
-  StatusBar
+  StatusBar,
+  Text
 } from 'react-native';
 import styled from "styled-components/native";
 import {useEffect} from "react";
@@ -24,16 +25,17 @@ function MainScreen({navigation, wallets}) {
       <StatusBar barStyle="dark-content"/>
       <SafeAreaView>
           <ViewBody>
-
+            <Text>Wallets response:</Text>
+            <Text>{JSON.stringify(wallets)}</Text>
           </ViewBody>
       </SafeAreaView>
     </React.Fragment>
   );
-};
+}
 
 const mapStateToProps = function(state) {
   return {
-    // wallets: state.wallets.wallets
+    wallets: state.wallets.wallets
   }
 };
 
